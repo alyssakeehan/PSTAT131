@@ -412,4 +412,3 @@ _Based off of what I observe from the graph, as p increases, the training error 
 Note: poly(age, degree=p, raw=TRUE) will return a matrix with p columns, where the p-th column is agep. For the predictors in your regression use poly(age, degree=p, raw=FALSE). The raw=FALSE option returns predictors which are numerically more stable (it returns a matrix of “orthogonal polynomials”). Numerical stability can be an issue because agep can be very very large if p is large. The orthogonal polynomials returned when raw=FALSE are rescaled to account for this so please use the raw=FALSE option. Hint: A function similar to do.chunk from problem 4 will be helpful here as well.
 
 
-
