@@ -145,7 +145,24 @@ pr_face <- prcomp(face_mat, center = TRUE, scale = FALSE)
 ```{r}
 pr_face.var <-  pr_face$sdev^2
 pve_face <- pr_face.var/sum(pr_face.var)
-pve_face[1] + pve_face[2] + pve_face[3] + pve_face[4] + pve_face[5]
+plot(pve_face, xlab = "Principal Component", 
+     ylab = "Proportion of Variance Explained",xlim = c(1,8), 
+     ylim = c(0,1), type = "b")
+plot(cumsum(pve_face), xlab = "Principal Component", 
+     ylab = "Cummulative Proportion of Variance Explained",
+     xlim = c(1,8), ylim = c(0,1), type = "b")
+
+# used to compute the number of PCs to explain at least 50% of the variance
+fifty_perc_var <- 1
+for (i in c(1:length(pve_face))){
+  if (cumsum(pve_face)[i] < 0.5){
+    fifty_perc_var <- fifty_perc_var + 1
+  }
+  else{
+    break
+  }
+}
+fifty_perc_var
 ```
 We need at least 5 PCs to explain at least 50% of the total variation in face images. 
 
